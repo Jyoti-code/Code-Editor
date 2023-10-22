@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Code Editor - JS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/prettier/2.5.3/browser-prettier.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+    integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+</head>
+
+<body style="background:#666666">
+  <!-- Navbar  -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background:#1A1A1A">
+    <div class="container">
+      <a class="navbar-brand" href="./">Code Editor</a>
+      <div>
+        <a href="#" class="text-light fw-bolder h6 text-decoration-none">Made by Jyoti</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- html css js container -->
+  <div class="container-fluid  py-1">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card code-editor-card rounded-0 mb-3">
+          <div class="card-header rounded-0">
+            <div class="card-title">
+              <div class="d-flex flex-row justify-content-between">
+                <div class="col-auto">
+                  <i class="fa-brands fa-html5" style="color: red;"></i>
+                  <b>HTML</b>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-secondary" id="copy-button" onclick="successnotify()">Copy</button>
+                  <button class="btn btn-success" id="save-button" onclick="successnotifySave()">Save</button>
+                  <button class="btn btn-danger" id="lock-button-html">Lock</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body rounded-0">
+            <textarea id="html-editor" cols="30" rows="10" class="form-control shadow-none editor-textarea"
+              style="border: none; background-color: #404040; color: #e1ecf7;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card code-editor-card rounded-0 mb-3">
+          <div class="card-header rounded-0">
+            <div class="card-title">
+              <div class="d-flex justify-content-between">
+                <div class="col-auto">
+                  <i class="fa-brands fa-css3" style="color: rgba(52, 52, 230, 0.881);"></i>
+                  <b>CSS</b>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-secondary" id="copy-button-css" onclick="successnotify()">Copy</button>
+                  <button class="btn btn-success" id="save-button-css" onclick="successnotifySave()">Save</button>
+                  <button class="btn btn-danger" id="lock-button-css">Lock</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body rounded-0">
+            <textarea id="css-editor" cols="30" rows="10" class="form-control shadow-none editor-textarea"
+              style="border: none; background-color: #404040; color: #e1ecf7;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card code-editor-card rounded-0 mb-3">
+          <div class="card-header rounded-0">
+            <div class="card-title">
+              <div class="d-flex justify-content-between">
+                <div class="col-auto">
+                  <i class="fa-brands fa-js" style="color: yellow;"></i>
+                  <b>JS</b>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-secondary" id="copy-button-js" onclick="successnotify()">Copy</button>
+                  <button class="btn btn-success" id="save-button-js" onclick="successnotifySave()">Save</button>
+                  <button class="btn btn-danger" id="lock-button-js">Lock</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body rounded-0">
+            <textarea id="js-editor" cols="30" rows="10" class="form-control shadow-none editor-textarea"
+              style="border: none; background-color: #404040; color: #e1ecf7;"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card code-editor-card ">
+      <div class="card-header">
+        <div class="d-flex justify-content-between">
+          <div class="col-auto">
+            <b>Preview</b>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary rounded-0" id="execute_code">Run</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <iframe id="preview-panel"></iframe>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="./compile.js"></script>
+
+  <!-- Notify logic -->
+  <script>
+    const notyf = new Notyf({
+      duration: 3000,
+      position: {
+        x: 'center',
+        y: 'top',
+      },
+      types: [
+        {
+          type: 'info',
+          background: 'blue',
+          icon: false
+        }
+      ]
+
+    });
+
+    function successnotify() {
+      notyf.success('Text Copied.');
+    }
+
+    function successnotifySave() {
+      notyf.success('Text Saved.');
+    }
+  </script>
+</body>
+
+</html>
